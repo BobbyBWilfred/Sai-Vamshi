@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday, Sai Vamshi!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles and Animations -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Prevent horizontal scroll from animations */
+            overflow-x: hidden;
+            /* Festive background gradient */
+            background: linear-gradient(135deg, #fff1f2 0%, #e0f2fe 100%);
+        }
+        
+        /* Custom font for the main title */
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Container for background balloon animations */
+        .balloon-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Individual balloon styling */
+        .balloon {
+            position: absolute;
+            bottom: -200px; /* Start off-screen */
+            width: 60px;
+            height: 75px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.7;
+        }
+        
+        /* Balloon string */
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Container for confetti animations */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100; /* Confetti on top */
+        }
+        
+        /* Individual confetti piece */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.9;
+        }
+        
+        /* Styling for the quote cards */
+        .quote-card {
+            /* Frosted glass effect */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-left-width: 6px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Hover effect for cards */
+        .quote-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Glowing animation for the main title */
+        .text-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #f9a8d4, 0 0 40px #f9a8d4;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #f472b6, 0 0 50px #f472b6;
+            }
+        }
+    </style>
+</head>
+<body class="relative">
+    
+    <!-- Animation Containers -->
+    <div class="balloon-container" id="balloon-container"></div>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12 relative z-10 min-h-screen">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="font-pacifico text-5xl md:text-7xl text-pink-500 text-glow">
+                Happy 20th Birthday!
+            </h1>
+            <h2 class="text-4xl md:text-6xl font-bold text-purple-700 mt-4">
+                Sai Vamshi KP
+            </h2>
+            <p class="text-2xl text-yellow-600 font-semibold mt-4">
+                (Golden SVKP / Guru Ji)
+            </p>
+            <p class="text-xl text-gray-700 mt-2">
+                SRM Biotech Drug Lord!
+            </p>
+            
+            <!-- Animated Cake Emoji -->
+            <div class="text-8xl mt-8 animate-bounce">
+                🎂
+            </div>
+        </header>
+        
+        <!-- Wishes Section -->
+        <main>
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">
+                Wishes from the Dumakooty TV Show!
+            </h3>
+            
+            <!-- Grid for Quote Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="quotes-grid">
+                <!-- Quotes will be dynamically injected here by JavaScript -->
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-16 pb-8 text-gray-600">
+            <p>Have an amazing 20th year, Vamshi! 🎉</p>
+        </footer>
+        
+    </div>
+
+    <!-- JavaScript for Animations and Dynamic Content -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // All the quotes
+            const quotes = [
+                { person: 'Sirjan', quote: 'Are Hat na' },
+                { person: 'Aditya Kapoor', quote: 'Sai Vamshi will become an imotional IAS Officer' },
+                { person: 'Rohan', quote: 'Sai Vamshi has changed both mentally and physically he\'s become more fat' },
+                { person: 'Manisha', quote: 'Seedha Sadha Baccha I will remove you from the meeting' },
+                { person: 'Celine', quote: 'Vamshi believes in Silence is Golden' },
+                { person: 'Bobby', quote: 'Sai Vamshi Sai Kurmashi' },
+                { person: 'Krishna Sai', quote: 'Balla Dancing Bufallo Dancing' },
+                { person: 'Roshini', quote: 'I will vote for you' },
+                { person: 'Vikash', quote: 'Guru Ji' },
+                { person: 'French Teacher', quote: 'Shakalaka Bu' },
+                { person: 'Preethi Thomas', quote: 'I can see 2 Sai Vamshis' },
+                { person: 'Pradyuman', quote: 'Go sleep Vamshi' },
+                { person: 'Deepanwita', quote: 'It is very easy to go down the hill Vamshi' },
+                { person: 'Avinash', quote: 'Golden trans clap' },
+                { person: 'Adiv', quote: 'I am the mother your the father' },
+                { person: 'Sunita', quote: 'you pay less u get less' },
+                { person: 'Reeja', quote: 'Biochemistry' },
+                { person: 'Jacky', quote: 'Vamshi ni Rajnikant ah' },
+                { person: 'Thampi', quote: 'Vamshi Amme' },
+                { person: 'Tanveer', quote: 'Transveer' },
+                { person: 'Sujatha', quote: 'Give me one more' },
+                { person: 'Nalini ji', quote: 'The Sai Vamshi is passing away,I will gift him sweets from A2B from US of A' },
+                { person: 'Tasneem', quote: 'Aah Bhel mujhe maar' },
+                { person: 'Aadithyan', quote: 'Vamshi Pan Spitter' },
+                { person: 'Tanvi Lath', quote: '🦶' },
+                { person: 'Kalavati', quote: 'Vamshi don\'t cheat in exam don\'t smile' },
+                { person: 'Keya Mukerjee', quote: 'Vamshi Mukerjee my husband' },
+                { person: 'Mary Jaya', quote: 'Mehhhry Tuk Tuk Tuk' },
+                { person: 'Shyamala', quote: 'What\'s your mom\'s name' },
+                { person: 'Srijith', quote:'Lets do an oil bath in tambaram metro'},
+                { person: 'Ganapathi M', quote:'I am very excited to announce that I have a new child in honour of Vamshis 20th Birthday'},
+                { person: 'Vasumathi', quote:'I am responsible for Vamshis happiness on his Birthday'}
+            ];
+            
+            const grid = document.getElementById('quotes-grid');
+            const balloonContainer = document.getElementById('balloon-container');
+            const confettiContainer = document.getElementById('confetti-container');
+
+            // Colors for cards and animations
+            const borderColors = ['border-pink-500', 'border-purple-500', 'border-yellow-500', 'border-blue-500', 'border-green-500', 'border-red-500'];
+            const nameColors = ['text-pink-600', 'text-purple-600', 'text-yellow-700', 'text-blue-600', 'text-green-600', 'text-red-600'];
+            const balloonColors = ['rgba(239, 68, 68, 0.7)', 'rgba(59, 130, 246, 0.7)', 'rgba(234, 179, 8, 0.7)', 'rgba(168, 85, 247, 0.7)', 'rgba(34, 197, 94, 0.7)', 'rgba(236, 72, 153, 0.7)'];
+            const confettiColors = ['#ef4444', '#3b82f6', '#eab308', '#a855f7', '#22c55e', '#ec4899', '#f97316'];
+
+            // --- 1. Populate Quote Cards ---
+            quotes.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = `quote-card rounded-lg shadow-lg p-6 ${borderColors[index % borderColors.length]}`;
+                
+                const quoteText = document.createElement('p');
+                quoteText.className = 'text-lg italic text-gray-700';
+                quoteText.textContent = `"${q.quote}"`;
+                
+                const personText = document.createElement('p');
+                personText.className = `text-right font-semibold ${nameColors[index % nameColors.length]} mt-3`;
+                personText.textContent = `- ${q.person}`;
+                
+                card.appendChild(quoteText);
+                card.appendChild(personText);
+                grid.appendChild(card);
+            });
+
+            // --- 2. Animation Functions ---
+
+            // Function to create and animate balloons
+            function createBalloons(count) {
+                for (let i = 0; i < count; i++) {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    
+                    const size = Math.random() * 40 + 40; // 40px to 80px
+                    const left = Math.random() * 100; // 0% to 100%
+                    const duration = Math.random() * 10 + 10; // 10s to 20s
+                    const delay = Math.random() * 5; // 0s to 5s
+                    const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+                    const wobble = (Math.random() - 0.5) * 200; // horizontal drift
+                    
+                    balloon.style.width = `${size}px`;
+                    balloon.style.height = `${size * 1.25}px`;
+                    balloon.style.left = `${left}vw`;
+                    balloon.style.backgroundColor = color;
+                    
+                    // Use Web Animations API for more control
+                    balloon.animate([
+                        { transform: `translateY(0) translateX(0) rotate(-10deg)`, opacity: 0.7 },
+                        { transform: `translateY(-120vh) translateX(${wobble}px) rotate(10deg)`, opacity: 0 }
+                    ], {
+                        duration: duration * 1000,
+                        delay: delay * 1000,
+                        iterations: Infinity,
+                        easing: 'linear'
+                    });
+                    
+                    balloonContainer.appendChild(balloon);
+                }
+            }
+
+            // Function to create and animate confetti
+            function createConfetti(count) {
+                for (let i = 0; i < count; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    const left = Math.random() * 100; // 0% to 100%
+                    const duration = Math.random() * 3 + 3; // 3s to 6s
+                    const delay = Math.random() * 5; // 0s to 5s
+                    const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                    const size = Math.random() * 6 + 6; // 6px to 12px
+                    const initialRotation = Math.random() * 360;
+                    const finalRotation = initialRotation + (Math.random() - 0.5) * 1080;
+
+                    confetti.style.left = `${left}vw`;
+                    confetti.style.backgroundColor = color;
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.transform = `rotate(${initialRotation}deg)`;
+
+                    confetti.animate([
+                        { transform: `translateY(-10vh) rotate(${initialRotation}deg)`, opacity: 1 },
+                        { transform: `translateY(110vh) rotate(${finalRotation}deg)`, opacity: 0 }
+                    ], {
+                        duration: duration * 1000,
+                        delay: delay * 1000,
+                        iterations: Infinity,
+                        easing: 'linear'
+                    });
+
+                    confettiContainer.appendChild(confetti);
+                }
+            }
+            
+            // --- 3. Start Animations ---
+            createBalloons(20);  // Create 20 balloons
+            createConfetti(100); // Create 100 confetti pieces
+        });
+    </script>
+</body>
+</html>
